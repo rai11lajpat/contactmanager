@@ -29,7 +29,7 @@ public class HomeController {
         return user;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String getHome(Model model) {
         model.addAttribute("title", "Home -contact Manager");
         return "home";
@@ -39,6 +39,11 @@ public class HomeController {
     public String about(Model model) {
         model.addAttribute("title", "About -contact Manager");
         return "about";
+    }
+    @GetMapping("/signup")
+    public String signUp(Model model) {
+        model.addAttribute("title", "signUp -contact Manager");
+        return "signup";
     }
     
 }
