@@ -7,8 +7,37 @@
 </head>
 <body>
     <section>
-        <h1>This is Signup page</h1>
-        <h2>many more details</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="my-card">
+                        <h1 class="text-center">Register Here !</h1>
+                        
+                        <form action=""th:action= "@{/do-register}" method="post">
+                            <!-- name field -->
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="nameId" aria-describedby="emailHelp" placeholder="Enter name here...">
+                              </div>
+                            
+                            <!-- Email field -->
+                              <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="emailId" aria-describedby="emailHelp" placeholder="Enter Email here...">
+                              </div>
+                            <!-- Password field -->
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="passwordId" aria-describedby="emailHelp">
+                              </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
     </section>
     
 </body>
