@@ -1,35 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace= "base::Layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::Layout(~{::section})">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-md-6 offset-md-3">
                     <div class="my-card">
+                        <!--register image logo  -->
+                        <div class="container text-center">
+                            <img style="height: 100px; width: 100px;" th:src="@{/img/register.png}" alt="" />
+                        </div>
                         <h1 class="text-center">Register Here !</h1>
-                        
-                        <form action=""th:action= "@{/do-register}" method="post">
+                        <form action="" th:action="@{/do-register}" method="post">
                             <!-- name field -->
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="nameId" aria-describedby="emailHelp" placeholder="Enter name here...">
-                              </div>
-                            
+                                <input type="text" class="form-control" id="nameId" aria-describedby="emailHelp"
+                                    placeholder="Enter name here...">
+                            </div>
+
                             <!-- Email field -->
-                              <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="emailId" aria-describedby="emailHelp" placeholder="Enter Email here...">
-                              </div>
+                                <input type="email" class="form-control" id="emailId" aria-describedby="emailHelp"
+                                    placeholder="Enter Email here..." required>
+                            </div>
                             <!-- Password field -->
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="passwordId" aria-describedby="emailHelp">
-                              </div>
+                                <input type="password" class="form-control" id="passwordId"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <!-- About field -->
+                            <div class="form-group">
+                                <textarea rows="5" class="form-control"
+                                    placeholder="Enter something here..."></textarea>
+                            </div>
+                            <!-- buttons -->
+                            <div class="container text-center mt-4">
+                                <button class="btn btn-primary" type="submit">submit</button>
+                                <button class="btn btn-warning" type="reset">Reset</button>
+                            </div>
+
                         </form>
                     </div>
 
@@ -39,6 +58,7 @@
 
         </div>
     </section>
-    
+
 </body>
+
 </html>
