@@ -63,7 +63,7 @@ public class HomeController {
             }
             in_user.setRole("admin");
             in_user.setEnable(true);
-            User result=userRepository.save(in_user);
+            userRepository.save(in_user);
             System.out.println("Agreement:"+check1);
             System.out.println("User:"+in_user);
             model.addAttribute("user", new User());
