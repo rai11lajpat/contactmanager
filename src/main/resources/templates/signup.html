@@ -12,37 +12,53 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
+
+
                     <div class="my-card">
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert"
+                            role="alert">
+                            <p th:text="${session.message.content}"></p>
+                            <!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block> -->
+                        </div>
                         <!--register image logo  -->
                         <div class="container text-center">
                             <img style="height: 100px; width: 100px;" th:src="@{/img/register.png}" alt="" />
                         </div>
                         <h1 class="text-center">Register Here !</h1>
-                        <form action="" th:action="@{/do-register}" method="post">
+                        <form action="" th:action="@{/do-register}" method="post" th:object="${user}">
                             <!-- name field -->
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="nameId" aria-describedby="emailHelp"
-                                    placeholder="Enter name here...">
+                                <input name="name" type="text" class="form-control" id="nameId"
+                                    aria-describedby="emailHelp" placeholder="Enter name here..." required
+                                    th:value="${user.name}">
                             </div>
 
                             <!-- Email field -->
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="emailId" aria-describedby="emailHelp"
-                                    placeholder="Enter Email here..." required>
+                                <input name="email" type="email" class="form-control" id="emailId"
+                                    aria-describedby="emailHelp" placeholder="Enter Email here..." required
+                                    th:value="${user.email}">
                             </div>
                             <!-- Password field -->
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="passwordId"
-                                    aria-describedby="emailHelp">
+                                <input name="password" type="password" class="form-control" id="passwordId"
+                                    aria-describedby="emailHelp" required>
                             </div>
                             <!-- About field -->
                             <div class="form-group">
-                                <textarea rows="5" class="form-control"
-                                    placeholder="Enter something here..."></textarea>
+                                <textarea name="about" rows="5" class="form-control"
+                                    placeholder="Enter something here..." th:value="${user.about}"></textarea>
                             </div>
+                            <!-- check box formm terms and consitions -->
+                            <div class="form-group mb-3 form-check">
+                                <input name="check1" type="checkbox" class="form-check-input" id="check1" />
+                                <label class="form-check-label" for="check1">Accept terms and conditions</label>
+                            </div>
+
+
                             <!-- buttons -->
                             <div class="container text-center mt-4">
                                 <button class="btn btn-primary" type="submit">submit</button>
