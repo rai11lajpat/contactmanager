@@ -1,13 +1,17 @@
 package com.example.contactmanager.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
+import com.example.contactmanager.Model.EmailData;
 import com.example.contactmanager.dao.UserRepository;
 import com.example.contactmanager.entities.User;
 import com.example.contactmanager.helper.Message;
@@ -53,6 +57,18 @@ public class HomeController {
         model.addAttribute("user", new User());
         return "signup";
     }
+
+
+
+
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    
+
+
+
     //handler for registering user
     @PostMapping("/do-register")
     public String registerUser(@ModelAttribute("user") User in_user,@RequestParam(value = "check1",defaultValue = "false")boolean check1,Model model,HttpSession session){
@@ -68,7 +84,19 @@ public class HomeController {
             System.out.println("User:"+in_user);
             model.addAttribute("user", new User());
             session.setAttribute("message", new Message("Succesfully registered...", "alert-success"));
-            return "signup";
+
+            try {
+                String url = "http://localhost:8081/sendSimpleMail;";
+            
+            System.out.println(in_user.getEmail());
+            EmailData emaildata= new EmailData(in_user.getEmail(),"another Noob registered","or bhaii sunaaa kiaa haal hen maza aaya");
+            String response = restTemplate.postForObject(
+        url, emaildata, String.class);
+        System.out.println("Response from API: " + response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        return "signup";
            
         } catch (Exception e) {
             e.printStackTrace();
